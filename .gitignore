@@ -1,0 +1,16 @@
+.settings/
+
+target/
+node_modules/
+
+*.jar
+*.class
+*.iml
+*.war
+
+.classpath
+.project
+.idea
+
+package-lock.json
+yarn.lock

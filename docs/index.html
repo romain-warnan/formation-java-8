@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Java 8 – Remarques</title>
+
+		<link rel="shortcut icon" href="favicon.png" />
+		
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="diaporama/atom-one-light.css">
+
+        <!-- Style des diapos -->
+        <link rel="stylesheet" href="diaporama/slides.css">
+        <link rel="stylesheet" href="diaporama/icons/icons.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides icon-ultraviolet"><!-- "icon-color" ou "icon-dusk" -->
+				<section class="main-title">
+					<h1>Introduction à Java 8</h1>
+					<h3>Découvrir quelques fonctionnalités apportées par Java 8</h3>
+					<p>
+						<small>Romain Warnan</small>
+					</p>
+					<img src="images/logo-java-8.png" style="width: 200px;" />
+					<p class="right small">
+						<a href="?print-pdf#/" class="icon print" title="Imprimer avec Chrome"></a>
+					<p>
+				</section>
+
+                <section data-markdown="diaporama/chapitre-01.md" data-separator="^---+$" data-separator-vertical="^%%%+$" data-separator-vertical="^%%%+$" data-charset="utf-8"></section>
+
+				<section class="main-title">
+					<img src="images/java-cup.svg" style="width: 200px" />
+					<h2>Merci de votre attention</h2>
+					<h3><small>romain.warnan@insee.fr</small></h3>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+ 
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					// { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+            Reveal.configure({
+				// Slide number formatting can be configured using these variables:
+				// "h.v": horizontal . vertical slide number (default)
+				// "h/v": horizontal / vertical slide number
+				// "c": flattened slide number
+	            // "c/t": flattened slide number / total slides
+				slideNumber: 'c/t',
+				
+				// Push each slide change to the browser history
+				history: true,
+
+				// Hides the address bar on mobile devices
+				hideAddressBar: true,
+
+				// Transition style
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Transition speed
+				transitionSpeed: 'default', // default/fast/slow
+
+				// Transition style for full page slide backgrounds
+				backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+				// Number of slides away from the current that are visible
+				viewDistance: 3,
+				
+				// Enable slide navigation via mouse wheel
+				mouseWheel: true
+			});
+		</script>
+	</body>
+</html>
