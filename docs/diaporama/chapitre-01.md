@@ -7,30 +7,32 @@
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### Deux nouveaux types de méthodes
+### Méthodes statiques et par défaut dans les interfaces
 
-Les méthodes statiques
- - comme dans une classe abstraite
+Définition
 
 ```java
-public interface MonInterface {
+interface MonInterface {
  
-	// Prototypes de méthodes
+	String CONSTANTE = "Ma constante"; // static final
 	
-	default void defaultMethod() {
-		// default method implementation
-	}
+	void prototype(); // abstract
+	
+	static void staticMethod() { ... } // Nouveau : méthode statique
+	
+	default void defaultMethod() { ... } // Nouveau : méthode par défaut
 }
 ```
- 
-Les implémentations par défaut
+
+Utilisation
+
 ```java
-public interface MonInterface {
- 
-	// Prototypes de méthodes
-	
-	default void defaultMethod() {
-		// default method implementation
-	}
-}
+class MaClasse implements MonInterface { }
+
+// Méthode statique
+MonInterface.staticMethod();
+
+// Méthode par défaut
+MaClasse instance = new MaClasse();
+instance.defaultMethod();
 ```
