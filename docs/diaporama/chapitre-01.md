@@ -11,10 +11,21 @@
 
 Les méthodes statiques
  - comme dans une classe abstraite
+
+```java
+public interface MonInterface {
+ 
+	// Prototypes de méthodes
+	
+	default void defaultMethod() {
+		// default method implementation
+	}
+}
+```
  
 Les implémentations par défaut
 ```java
-public interface UneInterface {
+public interface MonInterface {
  
 	// Prototypes de méthodes
 	

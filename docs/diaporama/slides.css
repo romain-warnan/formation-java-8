@@ -101,6 +101,8 @@ body {
 
 .reveal pre {
     width: 100%;
+    box-shadow: none;
+    border: solid #458 1px;
 }
 
 .reveal code {
