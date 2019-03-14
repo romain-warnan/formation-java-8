@@ -1,6 +1,6 @@
 # Aperçu des fonctionnalités apportées par Java 8
 
-:arrow_forward: [Diaporama](http://wehdrc.pages.innovation.insee.eu/formation-java-8)
+:arrow_forward: [Diaporama](https://romain-warnan.github.io/formation-java-8/)
 
 ## Plan
 
