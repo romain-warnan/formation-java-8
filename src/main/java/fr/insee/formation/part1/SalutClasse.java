@@ -1,5 +1,7 @@
 package fr.insee.formation.part1;
 
+import java.util.Arrays;
+
 class SalutClasse implements BonjourInterface, CoucouInterface {
 
     @Override

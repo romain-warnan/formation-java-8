@@ -1,5 +1,5 @@
-/* Bleu = 4D7E9D */
-/* Orange = EC6A01 */
+/* Bleu = 4d7e9d */
+/* Orange = ec6a01 */
 
 
 body {
@@ -80,11 +80,11 @@ body {
 }
 
 .reveal .chapter.slide-background.present  {
-    opacity: 0.2;
+    opacity: 0.3;
 }
 
 .reveal .slide.slide-background.present  {
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .reveal .tp.slide-background.present  {
@@ -128,6 +128,11 @@ body {
     margin-right: 7px;
 }
 
+.reveal ul ul li:before {
+    content: '';
+    margin-right: 7px;
+}
+
 .reveal ul.simple-list li:before {
     content: '';
     margin-right: 7px;
@@ -135,11 +140,11 @@ body {
 
 .reveal ul li {
     font-size: 80%;
-    color: #1a53a1;
+    color: #4d7e9d;
 }
 
 .reveal li li {
-    color: #414448;
+    color: #515151;
 }
 
 .reveal .small {

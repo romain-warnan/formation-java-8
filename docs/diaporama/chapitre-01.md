@@ -14,9 +14,9 @@ Définition
 ```java
 interface MonInterface {
  
-	String CONSTANTE = "Ma constante"; // static final
+	String CONSTANTE = "Ma constante"; // public static final
 	
-	void prototype(); // abstract
+	void prototype(); // public abstract
 	
 	static void staticMethod() { ... } // Nouveau : méthode statique
 	
@@ -36,3 +36,30 @@ MonInterface.staticMethod();
 MaClasse instance = new MaClasse();
 instance.defaultMethod();
 ```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Pourquoi les méthodes par défaut ?
+
+Permet d’ajouter de nouvelles méthodes aux interfaces existantes
+ - sans casser la compatibilité ascendante
+
+Exemple dans l’interface `Collection<E>`
+```java
+default Spliterator<E> spliterator() {
+	return Spliterators.spliterator(this, 0);
+}
+
+default Stream<E> stream() {
+	return StreamSupport.stream(spliterator(), false);
+}
+```
+
+<!-- .element: class="icon warn" -->Problèmes de l’héritage multiple
+ - même prototype défini par défaut dans deux interfaces
+  - &rarr; surcharge obligatoire de la méthode dans la classe qui implémente les deux interfaces
+ - prototypes incompatibles définis par défaut dans deux interfaces
+  - &rarr; une classe ne peut pas implémenter les deux interfaces simultanément 
