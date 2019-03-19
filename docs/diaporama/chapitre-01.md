@@ -62,4 +62,37 @@ default Stream<E> stream() {
  - même prototype défini par défaut dans deux interfaces
   - &rarr; surcharge obligatoire de la méthode dans la classe qui implémente les deux interfaces
  - prototypes incompatibles définis par défaut dans deux interfaces
-  - &rarr; une classe ne peut pas implémenter les deux interfaces simultanément 
+  - &rarr; une classe ne peut pas implémenter les deux interfaces simultanément
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Pourquoi les méthodes statiques dans les interfaces ?
+
+Parce qu’il peut désormais y avoir du code dans les interfaces
+
+Cela évite d’avoir à créer des classes utilitaires
+ - par exemple dans l’interface `Comparator<T>` :
+
+```java
+public static <T extends Comparable<? super T>> Comparator<T> reverseOrder() {
+	return Collections.reverseOrder();
+}
+
+public static <T> Comparator<T> comparingInt(ToIntFunction<? super T> keyExtractor) {
+	Objects.requireNonNull(keyExtractor);
+	return (Comparator<T>) (a, b) -> Integer.compare(keyExtractor.applyAsInt(a), keyExtractor.applyAsInt(b));
+}    
+```
+
+ - utilisation :
+
+```java
+Arrays.asList("a", "b", "c").sort(Comparator.reverseOrder()); // ["c", "b", "a"]
+
+Arrays.asList("a", "b", "c").sort(reverseOrder()); // import static java.util.Comparator.* 
+```
+
+
