@@ -5,7 +5,7 @@
 ## Plan
 
  1. Nouveautés dans les interfaces
- 1. Lambda Expressions
+ 1. Expressions lambda
  1. Method References
  1. Stream
  1. Collectors

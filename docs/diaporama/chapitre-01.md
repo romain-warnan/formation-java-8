@@ -132,4 +132,6 @@ public interface Comparator<T> {
 
 <!-- .element: class="icon idea" -->Il suffit de donner le code de l’unique méthode abstraite pour définir complètement une nouvelle classe implémentant cette interface.
 
-Cela permet d’introduire la notion d’**expression lambda**
+Cela permet d’introduire la notion d’**expression lambda (&lambda;)**
+ - fonction anonyme qui peut être traitée comme un objet :
+  - &rarr; passée en paramètre ou retournée par une méthode
