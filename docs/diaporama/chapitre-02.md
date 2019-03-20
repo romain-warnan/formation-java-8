@@ -78,6 +78,17 @@ Comparator<Personne> comparator = (a, b) -> Integer.compare(a.age, b.age);
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### D’une classe anonyme à une expression lambda
+
+<div class="center">
+	<img src="images/anonymous-class-to-lambda.gif" />
+</div>
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
 ### Nouvelles interfaces fonctionnelles dans Java 8
 
 Java 8 introduit différentes interfaces fonctionnelles :
