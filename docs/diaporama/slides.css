@@ -60,6 +60,15 @@ body {
 	margin: 20px 0 0 0;
 }
 
+.reveal a {
+	color: #4d7e9d;
+}
+
+.reveal a:hover {
+	color: #4d7e9d;
+	text-decoration: underline;
+}
+
 .reveal .slides img {
     border: none;
     background: none;
