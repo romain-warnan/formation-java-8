@@ -42,7 +42,7 @@ instance.defaultMethod();
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### Pourquoi les méthodes par défaut ?
+### Pourquoi des méthodes par défaut ?
 
 Permet d’ajouter de nouvelles méthodes aux interfaces existantes
  - sans casser la compatibilité ascendante
@@ -69,7 +69,7 @@ default Stream<E> stream() {
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### Pourquoi les méthodes statiques dans les interfaces ?
+### Pourquoi des méthodes statiques dans les interfaces ?
 
 Parce qu’il peut désormais y avoir du code dans les interfaces
 
@@ -123,3 +123,13 @@ public interface Comparator<T> {
 }
 ```
 
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Pourquoi la notion d’interface fonctionnelle ?
+
+<!-- .element: class="icon idea" -->Il suffit de donner le code de l’unique méthode abstraite pour définir complètement une nouvelle classe implémentant cette interface.
+
+Cela permet d’introduire la notion d’**expression lambda**
