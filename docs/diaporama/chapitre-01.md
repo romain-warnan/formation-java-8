@@ -109,8 +109,7 @@ Arrays.asList("a", "b", "c").sort(reverseOrder()); // import static java.util.Co
 Utiliser l’annotation `@FunctionalInterface`
  - le compilateur génère une erreur si l’interface annotée ne vérifie pas les conditions
 
-Exemple d’interfaces fonctionnelles :
-
+Exemple d’interfaces fonctionnelles : [`Runnable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html), [`Comparator<T>`](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html), &hellip;
 ```java
 @FunctionalInterface
 public interface Runnable {
