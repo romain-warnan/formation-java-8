@@ -4,8 +4,7 @@
 
 ## Plan
 
- 1. Static and Default Methods in Interface
- 1. Functional Interfaces
+ 1. Nouveautés dans les interfaces
  1. Lambda Expressions
  1. Method References
  1. Stream
