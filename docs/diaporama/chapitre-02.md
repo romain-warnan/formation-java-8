@@ -7,6 +7,77 @@
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Une évolution majeure dans le langage
+
+Expressions lambda
+ - ou closures, ou fonctions anonymes, ou &lambda;
+ - permet de passer des traitements en paramètres d’une méthode
+
+**Avant**
+
+ - utilisation de classe anonymes
+
+```java
+personnes.sort(new Comparator<Personne>() {
+	@Override
+	public int compare(Personne a, Personne b) {
+		return Integer.compare(a.age, b.age);
+	}
+});
+```
+
+**Après**
+
+ - utilisation d’expressions lambda
+
+```java
+personnes.sort((a, b) -> Integer.compare(a.age, b.age));
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelle syntaxe
+
+ - utilisation d’une classe anonyme
+
+```java
+Comparator<Personne> comparator = new Comparator<Personne>() {
+	@Override
+	public int compare(Personne a, Personne b) {
+		return Integer.compare(a.age, b.age);
+	}
+};
+```
+ - nouvelle notation avec la flèche : `->`
+
+```java
+Comparator<Personne> comparator = (Personne a, Personne b) -> {
+	return Integer.compare(a.age, b.age);
+};
+```
+
+ - suppression des types en paramètre, implicites
+
+```java
+Comparator<Personne> comparator = (a, b) -> {
+	return Integer.compare(a.age, b.age);
+};
+```
+
+ - suppression des accolades « `{}` », du « `return` » et du point virgule « `;` »
+  - car l’expression &lambda; ne comporte qu’une seule instruction
+
+```java
+Comparator<Personne> comparator = (a, b) -> Integer.compare(a.age, b.age);
+```
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
 ### Nouvelles interfaces fonctionnelles dans Java 8
 
 Java 8 introduit différentes interfaces fonctionnelles :
