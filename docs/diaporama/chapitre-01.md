@@ -1,6 +1,6 @@
 <!-- .slide: data-background-image="images/java-cup.svg" data-background-size="400px" class="chapter" -->
 ## 1
-### Méthodes implémentées dans les interfaces
+### Nouveautés dans les interfaces
 
 
 %%%
@@ -95,4 +95,32 @@ Arrays.asList("a", "b", "c").sort(Comparator.reverseOrder()); // ["c", "b", "a"]
 Arrays.asList("a", "b", "c").sort(reverseOrder()); // import static java.util.Comparator.* 
 ```
 
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Interfaces fonctionnelles
+
+**Interface fonctionnelle** : interface qui ne comporte qu’**une seule méthode abstraite**
+ - interface « SAM » : *single abstract method*
+ - les méthodes statiques, par défaut ou définies dans `Object` ne comptent pas
+
+Utiliser l’annotation `@FunctionalInterface`
+ - le compilateur génère une erreur si l’interface annotée ne vérifie pas les conditions
+
+Exemple d’interfaces fonctionnelles :
+
+```java
+@FunctionalInterface
+public interface Runnable {
+	public abstract void run(); // Unique méthode abstraite
+}
+
+@FunctionalInterface
+public interface Comparator<T> {
+	// Méthodes par défaut, statiques ou de la class Object
+	int compare(T a, T b); // Unique méthode abstraite
+}
+```
 
