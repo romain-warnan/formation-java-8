@@ -239,61 +239,27 @@ noms.removeIf(nom -> nom.startsWith("P")); // noms = ["Marie", "Jean"]
 %%%
 
 
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- **`Supplier`** : fonctions sans paramètre 
+**`UnaryOperator<T>`**
+ - ensemble des expressions lambda qui **acceptent une valeur et retournent une valeur du même type** 
 
 ```java
-Supplier<T>				T get()
+@FunctionalInterface
+public interface UnaryOperator<T> extends Function<T, T> {}
 ```
 
-- **`Consumer`** : fonctions qui ne retournent rien
+Exemple
+ - `List<E>`
 
 ```java
-Consumer<T>				void accept(T t)
+void replaceAll(UnaryOperator<E> operator)
 ```
 
- - **`Predicate`** : fonctions qui retourne un booléen
-
 ```java
-Predicate<T>			boolean test(T t)
+List<String> noms = Arrays.asList("Pierre", "Marie", "Jean", "Paul");
+noms.replaceAll(nom -> nom.toUpperCase()); // noms = ["PIERRE", "MARIE", "JEAN", "PAUL"]
 ```
 
 
@@ -301,20 +267,129 @@ Predicate<T>			boolean test(T t)
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
- - **`BiFunction`** : fonctions à deux paramètres
+### Nouvelles interfaces fonctionnelles
+
+**`BiFunction<T, U, R>`**
+ - ensemble des expressions lambda qui **acceptent deux valeurs et retournent une autre valeur** 
 
 ```java
-BiFunction<T, U, R>		R apply(T t, U u)
+@FunctionalInterface
+public interface BiFunction<T, U, R> {
+	R apply(T t, U u);
+}
 ```
 
- - **`UnaryOperator`** : fonctions qui retourne le même type que celui passé en entrée
+Exemple
+ - `Map<K, V>`
 
 ```java
-UnaryOperator<T>			T apply(T t)
+void replaceAll(BiFunction<K, V, V> function)
 ```
 
- - **`BinaryOperator`** : fonctions qui retourne le même type que ceux passés en entrée
+```java
+Map<String, Integer> salaires = new HashMap<>();
+salaires.put("Marie", 40_000);
+salaires.put("Pierre", 30_000);
+salaires.put("Jean", 50_000);
+ 
+salaires.replaceAll((nom, salaire) -> nom.equals("Jean") ? salaire : salaire + 10_000);
+// Tout le monde est augmenté, sauf Jean
+```
 
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
+
+**`BiConsumer<T, U>`**
+ - ensemble des expressions lambda qui **acceptent deux valeurs et ne retournent rien** 
+
+```java
+@FunctionalInterface
+public interface BiConsumer<T, U> {
+	void accept(T t, U u);
+}
+```
+
+Exemple
+ - `Map<K, V>`
+
+```java
+void forEach(BiConsumer<K, V> action)
+```
+
+```java
+Map<String, Integer> ages = new HashMap<>();
+ages.put("Marie", 31);
+ages.put("Pierre", 35);
+ages.put("Jean", 58);
+ 
+ages.forEach((nom, age) -> System.out.println(nom + " a " + age + " ans"));
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
+
+**`BinaryOperator<T>`**
+ - ensemble des expressions lambda qui **acceptent deux valeurs du même type et retournent une valeur du même type** 
+
+<!-- .element: class="icon idea" -->Permet de faire des opérations de réduction (somme, moyenne, *etc.*)
+ 
+```java
+@FunctionalInterface
+public interface BinaryOperator<T> extends BiFunction<T,T,T> {}
+```
+
+Exemple
+ - `Stream<T>`
+
+```java
+public T reduce(T identity, BinaryOperator<T> accumulator);
+```
+
+```java
+List<Integer> nombres = Arrays.asList(3, 5, 8, 9, 12);
+int somme = nombres.stream().reduce(0, (a, b) -> a + b);
+```
+
+
+%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
 ```java
 BinaryOperator<T>			T apply(T a, T b)
 ```
