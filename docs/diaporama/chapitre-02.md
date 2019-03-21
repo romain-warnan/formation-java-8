@@ -210,7 +210,33 @@ noms.forEach(nom -> System.out.println("Bonjour, " + nom));
 %%%
 
 
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
 
+**`Predicate<T>`**
+ - ensemble des expressions lambda qui **acceptent une valeur et retournent un booléen** 
+
+```java
+@FunctionalInterface
+public interface Predicate<T> {
+	boolean test(T t);
+}
+```
+
+Exemple
+ - `Collection<E>`
+
+```java
+boolean removeIf(Predicate<E> filter)
+```
+
+```java
+List<String> noms = Arrays.asList("Pierre", "Marie", "Jean", "Paul");
+noms.removeIf(nom -> nom.startsWith("P")); // noms = ["Marie", "Jean"]
+```
+
+
+%%%
 
 
 
