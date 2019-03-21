@@ -175,7 +175,33 @@ Personne personne = optional.orElse(personneService.findDefault());
 
 %%%
 
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
 
+**`Consumer<T>`**
+ - ensemble des expressions lambda qui **acceptent une valeur mais ne retournent rien** 
+
+```java
+@FunctionalInterface
+public interface Consumer<T> {
+	void accept(T t);
+}
+```
+
+Exemple
+ - `Iterable<T>`
+
+```java
+public void forEach(Consumer<T> action)
+```
+
+```java
+List<String> noms = Arrays.asList("Pierre", "Marie", "Jean", "Paul");
+noms.forEach(nom -> System.out.println("Bonjour, " + nom));
+```
+
+
+%%%
 
 
 
