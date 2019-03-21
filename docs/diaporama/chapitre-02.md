@@ -119,15 +119,15 @@ public interface Map<K, V> {
 ```java
 @FunctionalInterface
 public interface Function<T, R> {
-	// ...
 	R apply(T t);
 }
 ```
 
-Exemple :
+Exemple
+ - `Map<K, V>`
 
 ```java
-V computeIfAbsent(K key, Function<K, V> mappingFunction)
+public V computeIfAbsent(K key, Function<K, V> mappingFunction)
 ```
 
 ```java
@@ -138,6 +138,86 @@ Integer ageDeJean = map.computeIfAbsent(jean, p -> p.getAge());
 
 
 %%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
+
+**`Supplier<T>`**
+ - ensemble des expressions lambda qui **retournent une valeur sans prendre de paramètre** 
+
+```java
+@FunctionalInterface
+public interface Supplier<T> {
+	T get();
+}
+```
+
+Exemple
+ - `Optional<T>`
+
+```java
+public T orElseGet(Supplier<T> other)
+```
+
+```java
+Optional<Personne> optional = ...
+Personne personne = optional.orElseGet(() -> personneService.findDefault()); // public Personne findDefault();
+```
+
+<!-- .element: class="icon question" -->Pourquoi est-ce mieux que d’écrire :
+
+```java
+Personne personne = optional.orElse(personneService.findDefault());
+```
+ - car avec le `Supplier`, l’expression n’est évaluée que si c’est nécessaire
+  - *i.e.* quand l’`Optional` est vide
+
+%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 - **`Supplier`** : fonctions sans paramètre 
