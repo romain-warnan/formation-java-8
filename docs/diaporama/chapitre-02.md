@@ -101,8 +101,7 @@ Exemple dans l’interface `Map` :
 
 ```java
 public interface Map<K, V> {
-	...
-	
+	// ...
 	default V computeIfAbsent(K key, Function<K, V> mappingFunction) {...}
 }
 ```
@@ -111,11 +110,35 @@ public interface Map<K, V> {
 %%%
 
 
- - **`Function`** : acceptent une valeur et en retournent une autre 
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Nouvelles interfaces fonctionnelles
+
+**`Function<T, R>`**
+ - ensemble des expressions lambda qui **acceptent une valeur et en retournent une autre** 
 
 ```java
-Function<T, R>			R apply(T t)
+@FunctionalInterface
+public interface Function<T, R> {
+	// ...
+	R apply(T t);
+}
 ```
+
+Exemple :
+
+```java
+V computeIfAbsent(K key, Function<K, V> mappingFunction)
+```
+
+```java
+Map<Personne, Integer> map = ...
+Personne jean = ...
+Integer ageDeJean = map.computeIfAbsent(jean, p -> p.getAge());
+```
+
+
+%%%
+
 
 - **`Supplier`** : fonctions sans paramètre 
 
