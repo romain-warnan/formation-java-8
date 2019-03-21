@@ -362,49 +362,27 @@ int somme = nombres.stream().reduce(0, (a, b) -> a + b);
 %%%
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-```java
-BinaryOperator<T>			T apply(T a, T b)
-```
+### Nouvelles interfaces fonctionnelles
+
+Spécialisations pour les types primitifs
 
 ```java
-Function<T, R>				R apply(T t) 			// Accepte une valeur et en retourne une autre
-ToIntFunction<T>			int applyAsInt(T value)	// Spécialisation pour les types primitifs
+ToIntFunction<T>			int applyAsInt(T value)
 IntFunction<R>				R apply(int value)
+
+IntToLongFunction			long applyAsLong(int value)
+// IntToShort, IntToByte, ...
 	
-BiFunction<T, U, R>			R apply(T t, U u)			// Fonctions à deux paramètres
 ToIntBiFunction<T, U>		int applyAsInt(T t, U u)
 
-Supplier<T>					T get()			// Une fonction qui ne prend pas de paramètres
 IntSupplier<T>				int getAsInt()
 
-Consumer<T>					void accept(T t) // Fonction qui ne retourne rien
 IntConsumer<T>				void accept(int value)
+
+IntPredicate				boolean test(int value)
+
+IntUnaryOperator			int applyAsInt(int operand)
+
+IntBinaryOperator			int applyAsInt(int left, int right)
 ```
