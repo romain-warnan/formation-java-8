@@ -170,8 +170,14 @@ Personne personne = optional.orElseGet(() -> personneService.findDefault()); // 
 ```java
 Personne personne = optional.orElse(personneService.findDefault());
 ```
- - car avec le `Supplier`, l’expression n’est évaluée que si c’est nécessaire
-  - *i.e.* quand l’`Optional` est vide
+
+<ul class="fragment">
+ <li>
+ 	car avec le `Supplier`, l’expression n’est évaluée que si c’est nécessaire
+ 	<ul><li>*i.e.* quand l’`Optional` est vide</li></ul>
+ </li>
+</ul>
+
 
 %%%
 
