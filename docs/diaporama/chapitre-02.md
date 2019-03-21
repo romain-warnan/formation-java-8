@@ -91,7 +91,25 @@ Comparator<Personne> comparator = (a, b) -> Integer.compare(a.age, b.age);
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
 ### Nouvelles interfaces fonctionnelles dans Java 8
 
-Java 8 introduit différentes interfaces fonctionnelles :
+Java 8 introduit de nombreuses interfaces fonctionnelles
+ - interfaces les plus utiles, les plus génériques
+ - il est rare d’avoir à définir une nouvelle interface fonctionnelle
+ 
+Combinées aux méthodes par défaut, elles enrichissent considérablement le JDK
+
+Exemple dans l’interface `Map` :
+
+```java
+public interface Map<K, V> {
+	...
+	
+	default V computeIfAbsent(K key, Function<K, V> mappingFunction) {...}
+}
+```
+
+
+%%%
+
 
  - **`Function`** : acceptent une valeur et en retournent une autre 
 
