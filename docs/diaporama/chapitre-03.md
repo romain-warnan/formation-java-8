@@ -1,0 +1,243 @@
+<!-- .slide: data-background-image="images/java-cup.svg" data-background-size="400px" class="chapter" -->
+## 3
+### Références de méthodes
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Une alternative aux expressions lambda
+
+Référence de méthode : autre manière d’implémenter les interfaces fonctionnelles
+ - on n’écrit pas le code de l’unique méthode à implémenter,
+  - on donne simplement le nom d’une méthode dont la signature est compatible
+ - utilisation du nouvel opérateur « `::` »
+
+Exemple :
+
+ - Expression lambda
+ 
+```java
+Function<String, Integer> function = t -> Integer.valueOf(t);
+```
+
+ - Référence de méthode
+
+```java
+Function<String, Integer> function = Integer::valueOf;
+```
+
+<!-- .element: class="icon info" -->Il existe 4 types de références de méthodes
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### 1) Référence à une méthode statique
+
+Méthode statique
+
+ - de n’importe quelle classe
+ - dont la signature identique à celle de la *SAM*
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+	R apply(T t);
+}
+```
+
+```java
+class UneClasse {
+	static <T, R> R uneMethodeStatique(T t) {
+		//...
+	}
+}
+```
+
+```java
+Function<T, R> function = UneClasse::uneMethodeStatique;
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### 2) Référence à une méthode sur une instance
+
+Méthode non statique
+ - de n’importe quelle classe
+ - dont la signature identique à celle de la *SAM*
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+	R apply(T t);
+}
+```
+
+```java
+class UneClasse {
+	R uneMethode(T t) {
+		// ...
+	}
+}
+```
+
+```java
+UneClasse uneInstance = ...
+Function<T, R> function = uneInstance::uneMethode;
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### 3) Référence à un constructeur
+
+Constructeur
+ - de la classe correspondant au type de retour de la *SAM*
+ - acceptant en paramètre le même type que la *SAM*
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+	R apply(T t);
+}
+```
+
+```java
+class R {
+	R(T t) {
+		// ...
+	}
+}
+```
+
+```java
+Function<T, R> function = R::new;
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### 4) Référence à une méthode d’un objet arbitraire d’un type donné
+
+Méthode non statique
+ - de la classe du type du premier paramètre de la *SAM*
+ - retournant le même type que la *SAM*
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+	R apply(T t);
+}
+```
+
+```java
+class T {
+	R uneMethode() {
+		// ...
+	}
+}
+```
+
+```java
+Function<T, R> function = T::uneMethode;
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### *SAM* avec plusieurs paramètres
+
+```java
+@FunctionalInterface public interface BiFunction<T, U, R> { R apply(T t, U u); }
+```
+
+Méthode statique
+```java
+class UneClasse {
+	static <T, U, R> R uneMethodeStatique(T t, U u) { ... } // BiFunction<R, T, U> b = UneClasse::uneMethodeStatique
+}
+```
+
+Méthode d’une instance particulière
+```java
+class UneClasse {
+	R uneMethode(T t, U u) { ... } // BiFunction<R, T, U> b = UneClasse::uneMethode
+}
+```
+
+Constructeur
+```java
+class R {
+	R(T t, U u) { ... } // BiFunction<R, T, U> b = R::new
+}
+```
+
+Méthode d’un objet arbitraire d’un type donné
+```java
+class T {
+	R uneMethode(U u) { ... } // BiFunction<R, T, U> b = T::uneMethode
+}
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Exemples avec des fonctions
+
+Méthode statique
+ - `s -> Integer.valueOf(s)`
+ - `Integer::valueOf`
+
+Méthode d’une instance particulière
+ - `s -> "abc".compareTo(s)`
+ - `"abc"::compareTo`
+
+Constructeur
+ - `s -> new Integer(s)`
+ - `Integer::new`
+
+Méthode d’un objet arbitraire d’un type donné
+ - `s -> s.length()`
+ - `String::length`
+ 
+<!-- .element: class="icon info" -->Ces 4 références de méthode implémentent toutes :
+ - `Function<String, Integer>` : `public Integer apply(String s);`
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Exemples avec des bi-fonctions
+
+Méthode statique
+ - `(x, y) -> Math.pow(x, y)`
+ - `Math::pow`
+
+Méthode d’une instance particulière
+ - `(regex, replacement) -> "abc".replaceAll(regex, replacement)`
+ - `"abc"::replaceAll`
+ 
+Constructeur
+ - `(initialCapacity, loadFactor) -> new HashSet(initialCapacity, loadFactor)`
+ - `HashSet::new`
+
+Méthode d’un objet arbitraire d’un type donné
+ - `(a, b) -> a.concat(b)`
+ - `String::concat`
+
+<!-- .element: class="icon warn" -->Dans ce dernier cas, la fonction est appelé sur le 1<sup>er</sup> paramètre et les suivants sont passés en arguments

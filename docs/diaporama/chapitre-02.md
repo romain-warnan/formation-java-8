@@ -339,7 +339,7 @@ ages.forEach((nom, age) -> System.out.println(nom + " a " + age + " ans"));
 **`BinaryOperator<T>`**
  - ensemble des expressions lambda qui **acceptent deux valeurs du même type et retournent une valeur du même type** 
 
-<!-- .element: class="icon idea" -->Permet de faire des opérations de réduction (somme, moyenne, *etc.*)
+<!-- .element: class="icon info" -->Permet de faire des opérations de réduction (somme, moyenne, *etc.*)
  
 ```java
 @FunctionalInterface
