@@ -262,3 +262,26 @@ String::concat
 ```
 
  - <!-- .element: class="icon warn" -->Dans ce dernier cas, la fonction est appelé sur le 1<sup>er</sup> paramètre et les suivants sont passés en arguments
+ 
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Une syntaxe plus expressive
+
+Avec les expressions lambda on a pu écrire :
+```java
+Comparator<Personne> comparator = (a, b) -> Integer.compare(a.getAge(), b.getAge());
+```
+
+Simplification avec les références de méthode et les méthodes statiques :
+```java
+Comparator<Personne> comparator = Comparator.comparingInt(Personne::getAge);
+```
+
+Ou encore en utilisant les imports statiques :
+```java
+// import static java.util.Comparator.*;
+Comparator<Personne> comparator = comparingInt(Personne::getAge);
+```
