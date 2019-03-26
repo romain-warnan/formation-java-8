@@ -35,7 +35,7 @@ Function<String, Integer> function = Integer::valueOf;
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### 1) Référence à une méthode statique
+### 1/ Référence à une méthode statique
 
 Méthode statique
 
@@ -66,7 +66,7 @@ Function<T, R> function = UneClasse::uneMethodeStatique;
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### 2) Référence à une méthode sur une instance
+### 2/ Référence à une méthode sur une instance
 
 Méthode non statique
  - de n’importe quelle classe
@@ -97,7 +97,7 @@ Function<T, R> function = uneInstance::uneMethode;
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### 3) Référence à un constructeur
+### 3/ Référence à un constructeur
 
 Constructeur
  - de la classe correspondant au type de retour de la *SAM*
@@ -127,7 +127,7 @@ Function<T, R> function = R::new;
 
 
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
-### 4) Référence à une méthode d’un objet arbitraire d’un type donné
+### 4/ Référence à une méthode d’un objet arbitraire d’un type donné
 
 Méthode non statique
  - de la classe du type du premier paramètre de la *SAM*
@@ -163,28 +163,31 @@ Function<T, R> function = T::uneMethode;
 @FunctionalInterface public interface BiFunction<T, U, R> { R apply(T t, U u); }
 ```
 
-Méthode statique
+1/ Méthode statique
+
 ```java
 class UneClasse {
 	static <T, U, R> R uneMethodeStatique(T t, U u) { ... } // BiFunction<R, T, U> b = UneClasse::uneMethodeStatique
 }
 ```
 
-Méthode d’une instance particulière
+2/ Méthode d’une instance particulière
+
 ```java
 class UneClasse {
 	R uneMethode(T t, U u) { ... } // BiFunction<R, T, U> b = UneClasse::uneMethode
 }
 ```
+3/ Constructeur
 
-Constructeur
 ```java
 class R {
 	R(T t, U u) { ... } // BiFunction<R, T, U> b = R::new
 }
 ```
 
-Méthode d’un objet arbitraire d’un type donné
+4/ Méthode d’un objet arbitraire d’un type donné
+
 ```java
 class T {
 	R uneMethode(U u) { ... } // BiFunction<R, T, U> b = T::uneMethode
@@ -198,22 +201,32 @@ class T {
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
 ### Exemples avec des fonctions
 
-Méthode statique
- - `s -> Integer.valueOf(s)`
- - `Integer::valueOf`
+1/ Méthode statique
 
-Méthode d’une instance particulière
- - `s -> "abc".compareTo(s)`
- - `"abc"::compareTo`
+```java
+s -> Integer.valueOf(s)
+Integer::valueOf
+```
 
-Constructeur
- - `s -> new Integer(s)`
- - `Integer::new`
+2/ Méthode d’une instance particulière
+```java
+s -> "abc".compareTo(s)
+"abc"::compareTo
+```
 
-Méthode d’un objet arbitraire d’un type donné
- - `s -> s.length()`
- - `String::length`
- 
+3/ Constructeur
+
+```java
+s -> new Integer(s)
+Integer::new
+```
+
+4/ Méthode d’un objet arbitraire d’un type donné
+
+```java
+s -> s.length()
+String::length
+``` 
 <!-- .element: class="icon info" -->Ces 4 références de méthode implémentent toutes :
  - `Function<String, Integer>` : `public Integer apply(String s);`
 
@@ -224,20 +237,28 @@ Méthode d’un objet arbitraire d’un type donné
 <!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
 ### Exemples avec des bi-fonctions
 
-Méthode statique
- - `(x, y) -> Math.pow(x, y)`
- - `Math::pow`
+1/ Méthode statique
+```java
+ (x, y) -> Math.pow(x, y)
+ Math::pow
+```
 
-Méthode d’une instance particulière
- - `(regex, replacement) -> "abc".replaceAll(regex, replacement)`
- - `"abc"::replaceAll`
+2/ Méthode d’une instance particulière
+```java
+ (regex, replacement) -> "abc".replaceAll(regex, replacement)
+ "abc"::replaceAll
+ ```
  
-Constructeur
- - `(initialCapacity, loadFactor) -> new HashSet(initialCapacity, loadFactor)`
- - `HashSet::new`
+3/ Constructeur
+```java
+ (initialCapacity, loadFactor) -> new HashSet(initialCapacity, loadFactor)
+ HashSet::new
+```
 
-Méthode d’un objet arbitraire d’un type donné
- - `(a, b) -> a.concat(b)`
- - `String::concat`
+4/ Méthode d’un objet arbitraire d’un type donné
+```java
+(a, b) -> a.concat(b)
+String::concat
+```
 
-<!-- .element: class="icon warn" -->Dans ce dernier cas, la fonction est appelé sur le 1<sup>er</sup> paramètre et les suivants sont passés en arguments
+ - <!-- .element: class="icon warn" -->Dans ce dernier cas, la fonction est appelé sur le 1<sup>er</sup> paramètre et les suivants sont passés en arguments

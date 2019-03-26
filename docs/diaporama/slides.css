@@ -126,17 +126,17 @@ body {
 }
 
 .reveal ul {
-    list-style-type: none;
+    list-style-type: disc;
 }
 
-.reveal ul ul {
+/*.reveal ul ul {
     list-style-type: none;
-}
+}*/
 
-.reveal ul li:before {
+/*.reveal ul li:before {
     content: '–';
     margin-right: 7px;
-}
+}*/
 
 .reveal ul ul li:before {
     content: '';
