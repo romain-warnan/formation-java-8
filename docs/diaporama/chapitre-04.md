@@ -100,3 +100,59 @@ String name = Optional.ofNullable(value).orElseThrow(IllegalArgumentException::n
 Optional<String> optional = ...
 String value = optional.get(); // Risque de lever une NoSuchElementException
 ```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Évaluation de conditions
+
+Les optionnels permettent aussi d’écrire différemment les conditions :
+```java
+boolean isPasswordValid(String password) {
+	return password != null
+		&& isLongEnough(password)
+		&& isNotToEasy(password)
+		&& isNotWellKnown(password);
+}
+```
+
+Avec la fonction `filter()` :
+
+```java
+boolean isPasswordValid(String password) {
+	return Optional.ofNullable(password)
+		.filter(this::isLongEnough)
+		.filter(this::isNotToEasy)
+		.filter(this::isNotWellKnown)
+		.isPresent();
+}
+```
+
+
+%%%
+
+
+<!-- .slide: class="slide" data-background-image="images/java-cup.svg" data-background-size="400px" -->
+### Transformation d’une valeur non nulle
+
+
+```java
+boolean isPasswordValid(String password) {
+	if(password == null) return false;
+	String trimmedPassword = password.trim();
+	return isLongEnough(trimmedPassword) && isNotToEasy(trimmedPassword);
+}
+```
+
+Combinée avec la fonction `map()`, cela devient encore plus intéressant :
+```java
+boolean isPasswordValid(String password) {
+	return Optional.ofNullable(password)
+		.map(String::trim)
+		.filter(this::isLongEnough)
+		.filter(this::isNotToEasy)
+		.isPresent();
+}
+```
